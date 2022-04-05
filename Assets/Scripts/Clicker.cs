@@ -20,7 +20,7 @@ public class Clicker : MonoBehaviour
             
             if(Physics.Raycast(ray, out hit))
             {
-                if (hit.collider.gameObject.name == "Enemy(Clone)")
+                if (hit.collider.gameObject.name.Contains("Platform"))
                 {
                     hit.collider.gameObject.GetComponent<EnemyScript>().subtractHealth(1);
                 }

@@ -9,10 +9,12 @@ public class EnemyScript : MonoBehaviour
     public int coins = 1;
     public List<Transform> waypoints;
     public ManagerScript manager;
+    public SliderScript slider;
     
     private Transform t;
     private int targetIndex;
     private Vector3 targetDirection;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +31,8 @@ public class EnemyScript : MonoBehaviour
         targetDirection = waypoints[1].position - t.position;
 
         manager = GameObject.Find("GameManager").GetComponent<ManagerScript>();
+        //slider = this.transform.GetChild(0).GetChild(0).GetComponent<SliderScript>();
+        slider.setHealth(health);
     }
 
     // Update is called once per frame
@@ -66,5 +70,6 @@ public class EnemyScript : MonoBehaviour
     public void subtractHealth(int x)
     {
         health -= x;
+        slider.setHealth(health);
     }
 }
