@@ -511,7 +511,7 @@ GameObject:
   - component: {fileID: 8292956248392761138}
   m_Layer: 0
   m_Name: cannon
-  m_TagString: Untagged
+  m_TagString: delete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -552,3 +552,4 @@ MonoBehaviour:
   enemyParent: {fileID: 0}
   range: 8
   shotTimer: 1
+  cannonball: {fileID: 1389171334014143453, guid: 24078c6d9104fe64db972b457bed6156, type: 3}

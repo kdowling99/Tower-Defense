@@ -14,6 +14,8 @@ public class EnemyScript : MonoBehaviour
     private Transform t;
     private int targetIndex;
     private Vector3 targetDirection;
+
+    public ParticleSystem deathEffect;
     
 
     // Start is called before the first frame update
@@ -63,6 +65,8 @@ public class EnemyScript : MonoBehaviour
         if (health <= 0)
         {   
             manager.addCoins(coins);
+            GameObject effect = GameObject.Instantiate(deathEffect.gameObject);
+            effect.transform.position = this.transform.position;
             Destroy(this.gameObject);
         }
     }

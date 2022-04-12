@@ -14,12 +14,30 @@ public class ManagerScript : MonoBehaviour
     public GameObject enemyParent;
     public GameObject tower;
 
-    // Start is called before the first frame update
-    void Start()
+    public GameObject button;
+    public TextMeshProUGUI buttonText;
+
+    public void refresh()
     {
-        addCoins(2);
+        GameObject[] perishables = GameObject.FindGameObjectsWithTag("delete");
+        foreach (GameObject thing in perishables)
+        {
+            Destroy(thing);
+        }
+
+        coins = 2;
+        addCoins(0);
+        lives = 1;
         subtractLives(0);
         StartCoroutine(spawnEnemies(enemyCount));
+        StartCoroutine(disableButton());
+    }
+
+    IEnumerator disableButton()
+    {
+        yield return new WaitForSeconds(0.25f);
+        button.SetActive(false);
+        yield return null;
     }
 
     // Update is called once per frame
@@ -46,6 +64,14 @@ public class ManagerScript : MonoBehaviour
                 }
             }
         }
+
+        //FindFarObjects();
+
+        if (lives <= 0)
+        {
+            buttonText.SetText("Restart");
+            button.gameObject.SetActive(true);
+        }
     }
 
     public void addCoins(int x)
@@ -70,4 +96,35 @@ public class ManagerScript : MonoBehaviour
         }
         yield return null;
     }
+
+
+    //for debug
+    public static void FindFarObjects()
+    {
+        List<GameObject> farObjs = new List<GameObject>();
+        var allObjs = GameObject.FindObjectsOfType<GameObject>();
+        for (var i = 0; i < allObjs.Length; i++)
+        {
+            if ((Mathf.Abs(allObjs[i].transform.position.x) > 1000) ||
+                (Mathf.Abs(allObjs[i].transform.position.y) > 500) ||
+                (Mathf.Abs(allObjs[i].transform.position.z) > 1000)
+            )
+            {
+                farObjs.Add(allObjs[i]);
+            }
+        }
+
+        if (farObjs.Count > 0)
+        {
+            for (var i = 0; i < farObjs.Count; i++)
+            {
+                Debug.LogError($"Found object {farObjs[i].name} at location {farObjs[i].transform.position}");
+            }
+        }
+        else
+        {
+            Debug.Log("No Far objects");
+        }
+    }
+
 }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1982847422081942884}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: delete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -117,6 +117,7 @@ MonoBehaviour:
   waypoints: []
   manager: {fileID: 0}
   slider: {fileID: 7953459423502915219}
+  deathEffect: {fileID: 416510155121538556, guid: e12800da0d974f749bd9161d04476860, type: 3}
 --- !u!1 &5173879927692912510
 GameObject:
   m_ObjectHideFlags: 0

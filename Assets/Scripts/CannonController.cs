@@ -12,6 +12,7 @@ public class CannonController : MonoBehaviour
     private GameObject targetEnemy;
     private bool canShoot;
     private float timeSinceLastShot;
+    public GameObject cannonball;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,10 +47,11 @@ public class CannonController : MonoBehaviour
                 // shoot
                 if (canShoot)
                 {
-                    targetEnemy.GetComponent<EnemyScript>().subtractHealth(1);
+                    GameObject shot = GameObject.Instantiate(cannonball);
+                    shot.transform.SetParent(this.transform);
+                    shot.GetComponent<CannonballScript>().setTarget(targetEnemy.transform);
                     canShoot = false;
                     timeSinceLastShot = 0;
-                    Debug.DrawLine(rotater.GetChild(0).transform.position, targetEnemy.transform.position, Color.white, 0.2f, true);
                 } else
                 {
                     if (timeSinceLastShot > shotTimer)
